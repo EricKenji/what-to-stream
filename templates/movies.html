@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Popular Movies To Stream{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+
+  <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+    {% for movie in movies %}
+
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <a href="{{ url_for('movie_details', slug=movie.slug) }}">
+          <img src="{{ movie.img_url }}" class="card-img-fixed" alt="Image of {{ movie.title }}" ></a>
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">
+              Critic's Score:  {{ movie.critics_score }}<br>
+              Audience Score: {{ movie.audience_score }}<br>
+            </p>
+            <a href="{{ movie.movie_url }}" class="btn btn-primary">View Rotten Tomatoes</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <a href="{{ url_for('export_movies_csv') }}" class="btn btn-success mt-3">Export Movies to CSV</a>
+</div>
+{% endblock  %}

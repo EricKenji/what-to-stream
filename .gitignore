@@ -1,0 +1,5 @@
+.venv
+.idea
+.DS_Store
+.movie_data.csv
+.show_data.csv

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Popular Shows To Stream{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+    {% for show in shows %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <a href="{{ url_for('show_details', slug=show.slug) }}">
+            <img src="{{ show.img_url }}" class="card-img-fixed" alt="Image of {{ show.show_title }}" ></a>
+          <div class="card-body">
+            <h5 class="card-title">{{ show.show_title }}</h5>
+            <p class="card-text">
+              Critics Score:  {{ show.critics_score }}<br>
+              Audience Score: {{ show.audience_score }}
+            </p>
+            <a href="{{ show.show_url }}" class="btn btn-primary">View Rotten Tomatoes</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <a href="{{ url_for('export_shows_csv') }}" class="btn btn-success mb-3">Export Shows to CSV</a>
+</div>
+{% endblock  %}

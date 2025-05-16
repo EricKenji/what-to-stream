@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ title }}</h1>
+
+  {% if img_url %}
+    <img src="{{ img_url }}" class="img-fluid mb-4" style="max-width: 1000px; width: 100%; height: auto; border-radius: 8px;">
+  {% endif %}
+
+  <p><strong>Critics Score:</strong> {{ critic_score }}</p>
+  <p><strong>Audience Score:</strong> {{ audience_score }}</p>
+  {% if is_movie %}
+  <p><strong>Critics Consensus:</strong> {{ critic_consensus }}</p>
+  <p><strong>Audience Consensus:</strong> {{ aud_consensus }}</p>
+  {% endif %}
+  <p><strong>Synopsis:</strong> {{ synopsis }}</p>
+  {% if not is_movie %}
+  <p><strong>Seasons:</strong> {{ seasons }}</p>
+  {% endif %}
+  {% if platforms %}
+    <p><strong>Available On:</strong> {{ platforms | join(', ') }}</p>
+  {% endif %}
+
+  <a href="{{ request.referrer or url_for('home') }}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}
