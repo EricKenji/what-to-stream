@@ -311,4 +311,4 @@ def export_movies_csv():
     return render_template('movies.html', movies=movies_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
